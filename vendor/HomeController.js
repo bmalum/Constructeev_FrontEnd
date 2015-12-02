@@ -1,24 +1,23 @@
 constructeev.controller('HomeController', ['$scope', '$http', '$state', function($scope, $http, $state){
     // Change State to in Home to Sign Up Form
-    $state.transitionTo('home.signupform');
+ //   $state.transitionTo('home.signupform');
     $scope.channel = true
     var tmp_channel_data
     // SignUp Function
-    $scope.transition  = function(){
-            $state.transitionTo('home.signupform');
-    }
+ //   $scope.transition  = function(){
+  //          $state.transitionTo('home.signupform');
+  //  }
 
     $scope.sendSignUp = function(signUpModel) {
         // Change State to in Home to Sign Up Form
-        $state.transitionTo('home.loader');
-        signUpModel.slug = "testslug"
+ //       $state.transitionTo('home.loader');
         console.log(signUpModel);
         requestData = JSON.stringify({
             "channel": signUpModel
         });
 
         console.log(requestData);
-
+	
         $http.post('/api/channels', requestData)
             .then(
                 function(response) {

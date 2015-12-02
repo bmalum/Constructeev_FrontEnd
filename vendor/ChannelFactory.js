@@ -1,6 +1,6 @@
 constructeev.factory('channelFactory', ['$http', function($http) {
 
-    var urlBase = '/api/channels';
+    var urlBase = 'http://localhost:4000/api/channels';
     var channelFactory = {};
 
     channelFactory.getChannels = function () {

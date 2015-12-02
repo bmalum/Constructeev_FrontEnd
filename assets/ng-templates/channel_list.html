@@ -1,0 +1,10 @@
+<h1 class="bm centered">Popular Channels</h1>
+
+<ul class="example-animate-container">
+	<li class="animate-repeat" ng-repeat="channel in channels">
+	<a href="http://localhost:4000/#/channel/{{channel.id}}"> {{channel.name}}</a> with dbid {{channel.id}} .
+	</li>
+	<li class="animate-repeat" ng-if="results.length == 0">
+	<strong>No results found...</strong>
+	</li>
+</ul>
