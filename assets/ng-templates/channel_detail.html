@@ -32,46 +32,25 @@
 			</div>
 			<div class="ui center aligned segment">
 				<button class="ui circular facebook icon button">
-  <i class="facebook icon"></i>
-</button>
-<button class="ui circular twitter icon button">
-  <i class="twitter icon"></i>
-</button>
-<button class="ui circular google plus icon button">
-  <i class="google plus icon"></i>
-</button>
+				<i class="facebook icon"></i>
+				</button>
+				<button class="ui circular twitter icon button">
+				<i class="twitter icon"></i>
+				</button>
+				<button class="ui circular google plus icon button">
+				<i class="google plus icon"></i>
+				</button>
 			</div>
 		</div>
 	</div>
-	<div class="ui fluid styled accordion">
-		<div class="title">
-			<i class="dropdown icon"></i>
-			Sehr gute Software
-		</div>
-		<div class="content">
-			<p>Feedback Lorem Ipsum</p>
-			<div class="accordion">
-				<div class="title">
-					<i class="dropdown icon"></i>
-					Level 1A
-				</div>
-				<div class="content">
-					<p class="transition hidden">Level 1A Contents</p>
-					<div class="accordion transition hidden">
-						<div class="title">
-							<i class="dropdown icon"></i>
-							Level 1A-A
-						</div>
-						<div class="content">
-							Level 1A-A Contents
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-	$('.ui.accordion')
-	.accordion()
-	;
-	</script>
+	  <ul class="example-animate-container">
+    <li class="animate-repeat" ng-repeat="feedback in feedbacks">
+      {{feedback.title}}
+    </li>
+    <li class="animate-repeat" ng-if="results.length == 0">
+      <strong>No results found...</strong>
+    </li>
+  </ul>
+</div>
+
+

@@ -23,9 +23,9 @@ constructeev.factory('channelFactory', ['$http', function($http) {
         return $http.delete(urlBase + '/' + id);
     };
 
-    /*channelFactory.getFeedbacks = function (id) {
-        return $http.get(urlBase + '/' + id + '/orders');
-    };*/
+    channelFactory.getFeedbacks = function (id) {
+        return $http.get(urlBase + '/' + id + '/feedbacks');
+    };
 
-    return channelFactory   ;
+    return channelFactory;
 }]);

@@ -5,14 +5,13 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 
 	if ($state.current.name == "channeldetail"){
 		getChannel($state.params.channel_name);
+		getFeedbacks($state.params.channel_name);
 		console.log("I'm in Detail View");
 	} else if ($state.current.name == "channels") {
 		console.log("I'm in Index Mode")
 		getChannelList();
 	}
-		
-
-
+	
 	function getChannelList(){
 	 channelFactory.getChannels()
 			.success(function (channel) {
@@ -27,11 +26,21 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	 channelFactory.getChannel(id)
 			.success(function (channel) {
 				$scope.channel = channel.data;
-				console.log($scope.channels);
+				console.log($scope.channel);
 			}).error(function (error) {
 				console.log("Error");
 			})
-	}
-	 }	
+		}
+
+	function getFeedbacks(id){
+	 channelFactory.getFeedbacks(id)
+			.success(function (feedbacks) {
+				$scope.feedbacks = feedbacks.data;
+				console.log($scope.feedbacks);
+			}).error(function (error) {
+				console.log("Error");
+			})
+		}
+	}	
 ]);
 
