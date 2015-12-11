@@ -1,10 +1,37 @@
-<h1 class="bm centered">Popular Channels</h1>
-
-<ul class="example-animate-container">
-	<li class="animate-repeat" ng-repeat="channel in channels">
-	<a href="http://localhost:4000/#/channel/{{channel.id}}"> {{channel.name}}</a> with dbid {{channel.id}} .
-	</li>
-	<li class="animate-repeat" ng-if="results.length == 0">
-	<strong>No results found...</strong>
-	</li>
-</ul>
+<h1 class="ui center aligned header nav_padding"> Popular Constructeev Channels</h1>
+<div class="ui container example-animate-container">
+	<div class="ui fluid centered cards">
+		<div class="ui card animate-repeat" ng-repeat="channel in channels">
+			<div class="content">
+				<div class="right floated meta">{{channel.updated_at | date:"shortTime" }}</div>
+				<img class="ui avatar image" ng-src="http://www.gravatar.com/avatar/{{channel.name}}?s=120&d=identicon&r=PG"> {{channel.name}}
+			</div>
+			<div class="content">
+				<div class="meta">
+					Channel Details:<br>
+					{{channel.description}}
+				</div>
+				<br>
+				<span class="right floated">
+					<i class="heart outline like icon"></i>
+					{{channel.id}} Likes
+				</span>
+				<i class="comment icon"></i>
+				{{channel.feedback_counter}}  Feedbacks
+			</div>
+			<div class="ui bottom attached button">
+      <i class="newspaper icon"></i>
+      <a ng-href="/#/channel/{{channel.id}}">Visit Channel</a>
+    </div>
+		</div>
+		<div class="ui icon message" ng-if="results.length == 0">
+  <i class="frown icon"></i>
+  <div class="content">
+    <div class="header">
+      Something went wrong
+    </div>
+    <p>Is seems no Channles are here atm.</p>
+  </div>
+</div>
+	</div>
+</div>
