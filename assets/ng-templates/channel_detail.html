@@ -1,4 +1,77 @@
-<h1> Channel Details</h1>
-
-{{channel.name}}
-
+<div class="ui container nav_padding">
+	<div class="ui segments">
+		<div class="ui segment">
+			<a class="ui green ribbon label">Premium Channel</a>
+			<h2 class="ui center aligned icon header">
+			<img class="ui small circular image" src="http://semantic-ui.com/images/wireframe/square-image.png">
+			<div class="ui hidden divider"></div>
+			{{channel.name}}
+			</h2>
+			<div class="bm center">{{channel.description}}</div>
+		</div>
+		<div class="ui secondary horizontal segments">
+			<div class="ui center aligned segment">
+				<div class="ui labeled button" tabindex="0">
+					<div class="ui red button">
+						<i class="heart icon"></i> Like
+					</div>
+					<a class="ui basic red left pointing label">
+						1,048
+					</a>
+				</div>
+			</div>
+			<div class="ui center aligned segment">
+				<div class="ui labeled button" tabindex="0">
+					<div class="ui blue button">
+						<i class="comment icon"></i> Feedbacks
+					</div>
+					<a class="ui basic blue left pointing label">
+						13
+					</a>
+				</div>
+			</div>
+			<div class="ui center aligned segment">
+				<button class="ui circular facebook icon button">
+  <i class="facebook icon"></i>
+</button>
+<button class="ui circular twitter icon button">
+  <i class="twitter icon"></i>
+</button>
+<button class="ui circular google plus icon button">
+  <i class="google plus icon"></i>
+</button>
+			</div>
+		</div>
+	</div>
+	<div class="ui fluid styled accordion">
+		<div class="title">
+			<i class="dropdown icon"></i>
+			Sehr gute Software
+		</div>
+		<div class="content">
+			<p>Feedback Lorem Ipsum</p>
+			<div class="accordion">
+				<div class="title">
+					<i class="dropdown icon"></i>
+					Level 1A
+				</div>
+				<div class="content">
+					<p class="transition hidden">Level 1A Contents</p>
+					<div class="accordion transition hidden">
+						<div class="title">
+							<i class="dropdown icon"></i>
+							Level 1A-A
+						</div>
+						<div class="content">
+							Level 1A-A Contents
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	$('.ui.accordion')
+	.accordion()
+	;
+	</script>

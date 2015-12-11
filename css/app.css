@@ -10,7 +10,7 @@ body{
 }
 
 .nav_padding{
-	padding-top: 45px;
+	padding-top: 45px !important;
 }
 
 .margined_item{
@@ -28,6 +28,10 @@ body{
 
 .masthead h1 {
         font-size: 40px;
+}
+
+.bm.center{
+  text-align: center
 }
 
 div.ui.inverted.header{
