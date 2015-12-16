@@ -22,7 +22,7 @@
 			</div>
 			<div class="ui center aligned segment">
 				<div class="ui labeled button" tabindex="0">
-					<div class="ui blue button">
+					<div class="ui blue button" ng-click="openFeedbackModal()">
 						<i class="comment icon"></i> Feedbacks
 					</div>
 					<a class="ui basic blue left pointing label">
@@ -53,4 +53,42 @@
   </ul>
 </div>
 
+
+<!-- Feedback Modal -->
+
+<div id="FeedbackModal" class="ui modal">
+  <div class="header">Feedback für {{channel.name}}</div>
+  <div class="content">
+<form class="ui form">
+  <div class="field">
+    <label>Feedback Titel</label>
+    <input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
+  </div>
+  <div class="field">
+    <label>Dein Name</label>
+    <input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
+  </div>
+  <div class="field">
+    <label>Deine e-Mail</label>
+    <input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
+  </div>
+  <div class="field">
+    <label>Dein Feedback</label>
+    <textarea ng-model="feedback.content"></textarea>
+  </div>
+  <div class="field">
+    <div class="ui checkbox">
+      <input type="checkbox" tabindex="0" class="hidden">
+      <label>I agree to the Terms and Conditions</label>
+    </div>
+  </div>
+  <div class="ui right floated buttons">
+ <button class="ui button" ng-click="closeFeedbackModal()">Cancel</button>
+  <div class="or"></div>
+  <button class="ui positive button" ng-click="createFeedback()">Save</button>
+  </div>
+  <br>
+</form>
+  </div>
+</div>
 

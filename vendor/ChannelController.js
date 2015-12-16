@@ -11,6 +11,26 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		console.log("I'm in Index Mode")
 		getChannelList();
 	}
+
+	$scope.openFeedbackModal = function(){
+		angular.element(FeedbackModal).modal("show");
+	}
+	$scope.closeFeedbackModal = function(){
+		angular.element(FeedbackModal).modal("hide");
+	}
+	$scope.createFeedback = function(){
+		console.log($scope.channel.id);
+		createFeedback($scope.feedback,$scope.channel.id);
+	}
+
+	function createFeedback(feedback, channel_id){
+		feedback.happiness = 42;
+		requestData = JSON.stringify({
+            "feedback": feedback
+        });
+        console.log(requestData);
+		channelFactory.createFeedback(requestData, channel_id)
+	}
 	
 	function getChannelList(){
 	 channelFactory.getChannels()
@@ -41,6 +61,8 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 				console.log("Error");
 			})
 		}
-	}	
+	}
+
+
 ]);
 
