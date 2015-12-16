@@ -21,6 +21,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.createFeedback = function(){
 		console.log($scope.channel.id);
 		createFeedback($scope.feedback,$scope.channel.id);
+		$scope.feedbacks.unshift($scope.feedback);
 	}
 
 	function createFeedback(feedback, channel_id){
@@ -30,6 +31,12 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
         });
         console.log(requestData);
 		channelFactory.createFeedback(requestData, channel_id)
+		.success(function (feedback){
+				angular.element(FeedbackModal).modal("hide");
+			})
+			.error(function (feedback){
+				console.log(Error);
+			})
 	}
 	
 	function getChannelList(){
