@@ -3,7 +3,7 @@
 		<div class="ui segment">
 			<a class="ui green ribbon label">Premium Channel</a>
 			<h2 class="ui center aligned icon header">
-			<img class="ui small circular image" src="http://semantic-ui.com/images/wireframe/square-image.png">
+				<img class="ui small circular image" src="http://www.gravatar.com/avatar/7e017e7e3e6f6{{channel.name}}f46168638f9883a2db6{{channel.name}}{{channel.email}}?s=500&d=identicon&r=PG">
 			<div class="ui hidden divider"></div>
 			{{channel.name}}
 			</h2>
@@ -43,19 +43,40 @@
 			</div>
 		</div>
 	</div>
-	  <ul class="example-animate-container">
-    <li class="animate-repeat" ng-repeat="feedback in feedbacks">
-      {{feedback.title}}
-    </li>
-    <li class="animate-repeat" ng-if="results.length == 0">
+
+	<!-- ng-repeat feedbacks -->
+	<div class="ui segment">
+<div class="ui container comments">
+  <div class="comment" ng-repeat="feedback in feedbacks">
+    <a class="avatar">
+      <img src="http://semantic-ui.com/images/wireframe/square-image.png">
+    </a>
+    <div class="content">
+      <a class="author">{{feedback.author}}</a>
+      <div class="metadata">
+        <div class="date">{{channel.updated_at | date:"shortTime" }}</div>
+        <div class="rating">
+          <i class="star icon"></i>
+          {{feedback.happiness}}
+        </div>
+      </div>	
+      <div class="text">
+        <p style="white-space: pre;">{{feedback.content}}</p>
+      </div>
+      <div class="actions">
+        <a class="reply">Like</a>
+        <a class="save">Save</a><br>
+      </div>
+    </div>
+  </div>
+  <li class="animate-repeat" ng-if="results.length == 0">
       <strong>No results found...</strong>
     </li>
-  </ul>
 </div>
-
+</div>
+<br>
 
 <!-- Feedback Modal -->
-
 <div id="FeedbackModal" class="ui modal">
   <div class="header">Feedback für {{channel.name}}</div>
   <div class="content">
