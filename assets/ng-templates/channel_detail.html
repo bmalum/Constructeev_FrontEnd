@@ -3,34 +3,34 @@
 		<div class="ui segment">
 			<a class="ui green ribbon label">Premium Channel</a>
 			<h2 class="ui center aligned icon header">
-				<img class="ui small circular image" src="http://www.gravatar.com/avatar/7e017e7e3e6f6{{channel.name}}f46168638f9883a2db6{{channel.name}}{{channel.email}}?s=500&d=identicon&r=PG">
+			<img class="ui small circular image" src="http://www.gravatar.com/avatar/7e017e7e3e6f6{{channel.name}}f46168638f9883a2db6{{channel.name}}{{channel.email}}?s=500&d=identicon&r=PG">
 			<div class="ui hidden divider"></div>
 			{{channel.name}}
 			</h2>
 			<div class="bm center">{{channel.description}}</div>
 		</div>
-		<div class="ui secondary horizontal segments">
-			<div class="ui center aligned segment">
+		<div class="ui stackable three column grid">
+			<div class="bm center column">
 				<div class="ui labeled button" tabindex="0">
 					<div class="ui red button">
-						<i class="heart icon"></i> Like
+						<i class="heart icon"></i>Like
 					</div>
 					<a class="ui basic red left pointing label">
-						1,048
+						132
 					</a>
 				</div>
 			</div>
-			<div class="ui center aligned segment">
+			<div class="bm center column">
 				<div class="ui labeled button" tabindex="0">
 					<div class="ui blue button" ng-click="openFeedbackModal()">
-						<i class="comment icon"></i> Feedbacks
+						<i class="comment icon"></i>Feedback
 					</div>
 					<a class="ui basic blue left pointing label">
 						13
 					</a>
 				</div>
 			</div>
-			<div class="ui center aligned segment">
+			<div class="bm center column">
 				<button class="ui circular facebook icon button">
 				<i class="facebook icon"></i>
 				</button>
@@ -42,74 +42,73 @@
 				</button>
 			</div>
 		</div>
+		<br>
 	</div>
-
 	<!-- ng-repeat feedbacks -->
 	<div class="ui segment">
-<div class="ui container comments">
-  <div class="comment" ng-repeat="feedback in feedbacks">
-    <a class="avatar">
-      <img src="http://semantic-ui.com/images/wireframe/square-image.png">
-    </a>
-    <div class="content">
-      <a class="author">{{feedback.author}}</a>
-      <div class="metadata">
-        <div class="date">{{channel.updated_at | date:"shortTime" }}</div>
-        <div class="rating">
-          <i class="star icon"></i>
-          {{feedback.happiness}}
-        </div>
-      </div>	
-      <div class="text">
-        <p style="white-space: pre;">{{feedback.content}}</p>
-      </div>
-      <div class="actions">
-        <a class="reply">Like</a>
-        <a class="save">Save</a><br>
-      </div>
-    </div>
-  </div>
-  <li class="animate-repeat" ng-if="results.length == 0">
-      <strong>No results found...</strong>
-    </li>
-</div>
+		<div class="ui container comments">
+			<div class="comment" ng-repeat="feedback in feedbacks">
+				<a class="avatar">
+					<img src="http://semantic-ui.com/images/wireframe/square-image.png">
+				</a>
+				<div class="content">
+					<a class="author">{{feedback.author}}</a>
+					<div class="metadata">
+						<div class="date">{{channel.updated_at | date:"shortTime" }}</div>
+						<div class="rating">
+							<i class="star icon"></i>
+							{{feedback.happiness}}
+						</div>
+					</div>
+					<div class="text">
+						<p style="white-space: pre;">{{feedback.content}}</p>
+					</div>
+					<div class="actions">
+						<a class="reply">Like</a>
+						<a class="save">Save</a><br>
+					</div>
+				</div>
+			</div>
+			<li class="animate-repeat" ng-if="results.length == 0">
+				<strong>No results found...</strong>
+			</li>
+		</div>
+	</div>
 </div>
 <br>
-
 <!-- Feedback Modal -->
 <div id="FeedbackModal" class="ui modal">
-  <div class="header">Feedback für {{channel.name}}</div>
-  <div class="content">
-<form class="ui form">
-  <div class="field">
-    <label>Feedback Titel</label>
-    <input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
-  </div>
-  <div class="field">
-    <label>Dein Name</label>
-    <input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
-  </div>
-  <div class="field">
-    <label>Deine e-Mail</label>
-    <input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
-  </div>
-  <div class="field">
-    <label>Dein Feedback</label>
-    <textarea ng-model="feedback.content"></textarea>
-  </div>
-  <div class="field">
-    <div class="ui checkbox">
-      <input type="checkbox" tabindex="0" class="hidden">
-      <label>I agree to the Terms and Conditions</label>
-    </div>
-  </div>
-  <div class="ui right floated buttons">
- <button class="ui button" ng-click="closeFeedbackModal()">Cancel</button>
-  <div class="or"></div>
-  <button class="ui positive button" ng-click="createFeedback()">Save</button>
-  </div>
-  <br>
-</form>
-  </div>
+	<div class="header">Feedback für {{channel.name}}</div>
+	<div class="content">
+		<form class="ui form">
+			<div class="field">
+				<label>Feedback Titel</label>
+				<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
+			</div>
+			<div class="field">
+				<label>Dein Name</label>
+				<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
+			</div>
+			<div class="field">
+				<label>Deine e-Mail</label>
+				<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
+			</div>
+			<div class="field">
+				<label>Dein Feedback</label>
+				<textarea ng-model="feedback.content"></textarea>
+			</div>
+			<div class="field">
+				<div class="ui checkbox">
+					<input type="checkbox" tabindex="0" class="hidden">
+					<label>I agree to the Terms and Conditions</label>
+				</div>
+			</div>
+			<div class="ui right floated buttons">
+				<button class="ui button" ng-click="closeFeedbackModal()">Cancel</button>
+				<div class="or"></div>
+				<button class="ui positive button" ng-click="createFeedback()">Save</button>
+			</div>
+			<br>
+		</form>
+	</div>
 </div>
-
