@@ -23,6 +23,27 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		createFeedback($scope.feedback,$scope.channel.id);
 		$scope.feedbacks.unshift($scope.feedback);
 	}
+	$scope.createChannel = function(){
+		console.log($scope.channelModel);
+		createChannel($scope.ChannelModel)
+		angular.element(ChannelFormModal).modal("hide");
+	}
+
+	function createChannel(channel){
+	 	requestData = JSON.stringify({
+            "channel": channel
+        });
+		console.log(requestData)
+		channelFactory.createChannel(requestData)
+			.success(function (channel){
+				console.log(channel.data)
+			$state.go('channeldetail', { channel_name: channel.data.id});
+			})
+			.error(function (channel){
+							console.log("Failed to Create Channel");
+							console.log(channel);
+			})
+	}
 
 	function createFeedback(feedback, channel_id){
 		feedback.happiness = 42;
