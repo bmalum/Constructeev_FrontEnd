@@ -31,5 +31,13 @@ constructeev.factory('channelFactory', ['$http', function($http) {
         return $http.post(urlBase + '/' + channel_id + '/feedbacks', feedback);
     };
 
+    channelFactory.upvoteFeedback = function (channel_id, feedback_id){
+        return $http.get("/api/channels" + '/' + channel_id + '/feedbacks/' + feedback_id+"/_like");
+    }
+
+    channelFactory.upvoteChannel= function (channel_id){
+        return $http.get("/api/channels" + '/' + channel_id + '/_like/');
+    }
+
     return channelFactory;
 }]);

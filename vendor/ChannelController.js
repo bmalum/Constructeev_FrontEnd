@@ -28,6 +28,14 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		createChannel($scope.ChannelModel)
 		angular.element(ChannelFormModal).modal("hide");
 	}
+	$scope.upvoteFeedback = function(channel_id, feedback_id, index){
+		channelFactory.upvoteFeedback(channel_id, feedback_id);
+		$scope.feedbacks[index].happiness++
+	}
+	$scope.upvoteChannel = function(channel_id){
+		channelFactory.upvoteChannel(channel_id);
+		$scope.channel.likes++
+	}
 
 	function createChannel(channel){
 	 	requestData = JSON.stringify({

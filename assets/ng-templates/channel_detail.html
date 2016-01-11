@@ -11,12 +11,12 @@
 		</div>
 		<div class="ui stackable three column grid">
 			<div class="bm center column">
-				<div class="ui labeled button" tabindex="0">
+				<div ng-click="upvoteChannel(channel.id)" class="ui labeled button" tabindex="0">
 					<div class="ui red button">
 						<i class="heart icon"></i>Like
 					</div>
 					<a class="ui basic red left pointing label">
-						132
+						{{channel.likes}}
 					</a>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 						<p style="white-space: pre;">{{feedback.content}}</p>
 					</div>
 					<div class="actions">
-						<a class="reply">Like</a>
+						<a class="reply" ng-click="upvoteFeedback(channel.id, feedback.id, $index)">Like</a>
 						<a class="save">Save</a><br>
 					</div>
 				</div>
