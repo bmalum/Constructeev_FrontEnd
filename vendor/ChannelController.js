@@ -6,10 +6,24 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	if ($state.current.name == "channeldetail"){
 		getChannel($state.params.channel_name);
 		getFeedbacks($state.params.channel_name);
+		disableLikeButton($state.params.channel_name)
 		console.log("I'm in Detail View");
 	} else if ($state.current.name == "channels") {
 		console.log("I'm in Index Mode")
 		getChannelList();
+	}
+
+
+	function disableLikeButton(channel_id){
+		console.log('Function disabke Like')
+		if(localStorage.getItem(channel_id)){
+			angular.element(channel_likebutton).addClass("disabled")
+		}
+	}
+
+	$scope.openAnswers = function (feedback_id, index){
+		console.log(index)
+		$scope.feedbacks[index].openAnswers = "true"
 	}
 
 	$scope.openFeedbackModal = function(){
@@ -22,6 +36,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		console.log($scope.channel.id);
 		createFeedback($scope.feedback,$scope.channel.id);
 		$scope.feedbacks.unshift($scope.feedback);
+		$scope.channel.feedback_counter++
 	}
 	$scope.createChannel = function(){
 		console.log($scope.channelModel);
@@ -35,6 +50,18 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.upvoteChannel = function(channel_id){
 		channelFactory.upvoteChannel(channel_id);
 		$scope.channel.likes++
+		localStorage.setItem(channel_id, true);
+		angular.element(channel_likebutton).addClass("disabled")
+	}
+	$scope.openAnswer = function(feedback_id){
+		angular.element(AnswerModal).modal("show")
+		$scope.tmp_feedback_id = feedback_id
+	}
+	$scope.sendAnswer = function(){
+		console.log($scope.channel.id);
+		console.log($scope.tmp_feedback_id);
+		sendAnswer($scope.feedback,$scope.channel.id, $scope.tmp_feedback_id);
+		//$scope.feedbacks.unshift($scope.feedback);
 	}
 
 	function createChannel(channel){
@@ -54,7 +81,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	}
 
 	function createFeedback(feedback, channel_id){
-		feedback.happiness = 42;
+		feedback.happiness = 0;
 		requestData = JSON.stringify({
             "feedback": feedback
         });
@@ -62,6 +89,22 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		channelFactory.createFeedback(requestData, channel_id)
 		.success(function (feedback){
 				angular.element(FeedbackModal).modal("hide");
+			})
+			.error(function (feedback){
+				console.log(Error);
+			})
+	}
+
+	function sendAnswer(feedback, channel_id, parent_feedback_id){
+		feedback.happiness = 0;
+		feedback.feedback_id = parent_feedback_id;
+		requestData = JSON.stringify({
+            "feedback": feedback
+        });
+        console.log(requestData);
+		channelFactory.createFeedback(requestData, channel_id)
+		.success(function (feedback){
+				angular.element(AnswerModal).modal("hide");
 			})
 			.error(function (feedback){
 				console.log(Error);
