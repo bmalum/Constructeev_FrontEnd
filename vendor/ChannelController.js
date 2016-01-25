@@ -16,14 +16,15 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 
 	function disableLikeButton(channel_id){
 		console.log('Function disabke Like')
-		if(localStorage.getItem(channel_id)){
+		if(localStorage.getItem('channel'+channel_id)){
 			angular.element(channel_likebutton).addClass("disabled")
 		}
 	}
 
-	$scope.openAnswers = function (feedback_id, index){
+	$scope.openAnswers = function (channel_id, feedback_id, index){
 		console.log(index)
-		$scope.feedbacks[index].openAnswers = "true"
+		$scope.feedbacks[index].openAnswers = "false"
+		getFeedbackChilds(channel_id, feedback_id, index);
 	}
 
 	$scope.openFeedbackModal = function(){
@@ -46,11 +47,14 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.upvoteFeedback = function(channel_id, feedback_id, index){
 		channelFactory.upvoteFeedback(channel_id, feedback_id);
 		$scope.feedbacks[index].happiness++
+		localStorage.setItem('feedback'+feedback_id, true);
+		//TODO - disable Feedback Like Button
+		//angular.element(channel_likebutton).addClass("disabled")
 	}
 	$scope.upvoteChannel = function(channel_id){
 		channelFactory.upvoteChannel(channel_id);
 		$scope.channel.likes++
-		localStorage.setItem(channel_id, true);
+		localStorage.setItem('channel'+channel_id, true);
 		angular.element(channel_likebutton).addClass("disabled")
 	}
 	$scope.openAnswer = function(feedback_id){
@@ -136,6 +140,16 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 			.success(function (feedbacks) {
 				$scope.feedbacks = feedbacks.data;
 				console.log($scope.feedbacks);
+			}).error(function (error) {
+				console.log("Error");
+			})
+		}
+
+	function getFeedbackChilds(channel_id, feedback_id, index){
+	 channelFactory.getChildren(channel_id, feedback_id)
+			.success(function (feedback_childs) {
+				$scope.feedbacks[index].children = feedback_childs.data;
+				console.log($scope.feedbacks[index].children);
 			}).error(function (error) {
 				console.log("Error");
 			})

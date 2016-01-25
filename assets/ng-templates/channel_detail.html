@@ -67,15 +67,15 @@
 						<a class="reply" ng-click="upvoteFeedback(channel.id, feedback.id, $index)">Like</a>
 						<a class="save">Save</a>
 						<a ng-click="openAnswer(feedback.id)" class="reply">Reply</a>
-						<a ng-hide="feedback.feedback_childs == 0" ng-click="openAnswers(feedback.id, $index)"> Load Answers for Feedback </a>
-						<div class="ui segment" ng-hide="feedback.openAnswers == 'false'">
+						<a ng-hide="feedback.feedback_childs == 0" ng-click="openAnswers(channel.id, feedback.id, $index)"> Load Answers for Feedback </a>
+						<div class="ui segment" ng-hide="feedback.openAnswers != 'false'">
 							<div class="ui container comments" >
-								<div class="comment" ng-repeat="feedback_child in feedbacks_childs">
+								<div class="comment" ng-repeat="feedback_child in feedback.children">
 									<a class="avatar">
 										<img src="http://semantic-ui.com/images/wireframe/square-image.png">
 									</a>
 									<div class="content">
-										<a class="author">{{feedback_child.author}} {{feedback.openAnswers}}</a>
+										<a class="author">{{feedback_child.author}}</a>
 										<div class="metadata">
 											<div class="rating">
 												<i class="star icon"></i>

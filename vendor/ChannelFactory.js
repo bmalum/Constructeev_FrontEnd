@@ -39,5 +39,9 @@ constructeev.factory('channelFactory', ['$http', function($http) {
         return $http.get("/api/channels" + '/' + channel_id + '/_like/');
     }
 
+    channelFactory.getChildren= function (channel_id, feedback_id){
+        return $http.get("/api/channels" + '/' + channel_id + '/feedbacks/' + feedback_id + '/_children');
+    }
+
     return channelFactory;
 }]);
