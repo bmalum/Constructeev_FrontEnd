@@ -35,9 +35,8 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	}
 	$scope.createFeedback = function(){
 		console.log($scope.channel.id);
-		createFeedback($scope.feedback,$scope.channel.id);
-		$scope.feedbacks.unshift($scope.feedback);
-		$scope.channel.feedback_counter++
+		test = createFeedback($scope.feedback,$scope.channel.id);
+		
 	}
 	$scope.createChannel = function(){
 		console.log($scope.channelModel);
@@ -64,8 +63,8 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.sendAnswer = function(){
 		console.log($scope.channel.id);
 		console.log($scope.tmp_feedback_id);
+		$scope.feedback.feedback_childs = 0
 		sendAnswer($scope.feedback,$scope.channel.id, $scope.tmp_feedback_id);
-		//$scope.feedbacks.unshift($scope.feedback);
 	}
 
 	function createChannel(channel){
@@ -93,6 +92,8 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		channelFactory.createFeedback(requestData, channel_id)
 		.success(function (feedback){
 				angular.element(FeedbackModal).modal("hide");
+				$scope.feedbacks.unshift(feedback.data);
+				$scope.channel.feedback_counter++
 			})
 			.error(function (feedback){
 				console.log(Error);
@@ -109,6 +110,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		channelFactory.createFeedback(requestData, channel_id)
 		.success(function (feedback){
 				angular.element(AnswerModal).modal("hide");
+				$scope.feedback.feedback_childs ++
 			})
 			.error(function (feedback){
 				console.log(Error);
