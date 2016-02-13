@@ -4,7 +4,7 @@
 		<div class="ui card animate-repeat" ng-repeat="channel in channels">
 			<div class="content">
 				<div class="right floated meta">{{channel.updated_at | date:"shortTime" }}</div>
-				<img class="ui avatar image" ng-src="http://www.gravatar.com/avatar/{{channel.name}}?s=120&d=identicon&r=PG"> {{channel.name}}
+				<img class="ui avatar image" ng-src="http://www.gravatar.com/avatar/{{channel.channel_hash}}?s=120&d=identicon&r=PG"> {{channel.name}}
 			</div>
 			<div class="content">
 				<div class="meta">
