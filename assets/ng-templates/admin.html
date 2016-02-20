@@ -1,0 +1,27 @@
+<div class="ui container nav_padding">
+<h1 class="ui center aligned header"> Admin View for {{channel.name}}</h1>
+<div class="ui segment">
+		<div class="ui container threaded comments">
+			<div class="comment" ng-repeat="feedback in feedbacks">
+				<a class="avatar">
+					<img src="http://semantic-ui.com/images/wireframe/square-image.png">
+				</a>
+				<div class="content">
+					<a class="author">{{feedback.author}}</a>
+					<div class="metadata">
+						<div class="date">{{channel.updated_at | date:"shortTime" }}</div>
+						
+					</div>
+					<div class="text">
+						<p style="white-space: pre;">{{feedback.content}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+			<div class="animate-repeat" ng-if="feedbacks.length == 0">
+			Nothing found
+			</div>
+		</div>
+
+
+</div>

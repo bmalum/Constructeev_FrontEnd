@@ -16,6 +16,11 @@ constructeev.config(function($stateProvider, $urlRouterProvider, $locationProvid
             url: '/error',
             templateUrl: '/ng-templates/home_signup_error.html'
         })
+        .state('admin', {
+            url: '/admin/:channel_id',
+            templateUrl: '/ng-templates/admin.html',
+            controller: 'AdminController'
+        })
         .state('home.success', {
             url: '/success',
             templateUrl: '/ng-templates/home_signup_success.html'
