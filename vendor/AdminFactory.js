@@ -11,8 +11,8 @@ constructeev.factory('adminFactory', ['$http', function($http) {
         return $http.get('/api/channels/' + id);
     };
     
-    adminFactory.getFeedbacks = function () {
-        return $http.get('/api/admin/feedback_properties');
+    adminFactory.getFeedbacks = function (id) {
+        return $http.get('/api/admin/feedback_properties?id=' + id);
     };
 /**
     channelFactory.getChannel = function (id) {

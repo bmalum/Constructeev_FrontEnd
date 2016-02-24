@@ -9,7 +9,7 @@ constructeev.controller('AdminController', ['$scope', '$state', 'adminFactory',
 				console.log("Error");
 			})
 
-	adminFactory.getFeedbacks()
+	adminFactory.getFeedbacks($state.params.channel_id)
 			.success(function (feedback) {
 				$scope.feedbacks = feedback.data;
 				console.log($scope.feedbacks);
