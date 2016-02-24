@@ -45,123 +45,221 @@
 		<br>
 	</div>
 	<!-- ng-repeat feedbacks -->
-	<div class="ui segment">
+	<!--div class="ui segment">
 		<div class="ui container comments">
-			<div class="comment" ng-repeat="feedback in feedbacks">
-				<a class="avatar">
-					<img src="http://semantic-ui.com/images/wireframe/square-image.png">
-				</a>
-				<div class="content">
-					<a class="author">{{feedback.author}}</a>
-					<div class="metadata">
-						<div class="date">{{channel.updated_at | date:"shortTime" }}</div>
-						<div class="rating">
-							<i class="star icon"></i>
-							{{feedback.happiness}}
-						</div>
-					</div>
-					<div class="text">
-						<p style="white-space: pre;">{{feedback.content}}</p>
-					</div>
-					<div class="actions">
-						<a class="reply" ng-click="upvoteFeedback(channel.id, feedback.id, $index)">Like</a>
-						<a class="save">Save</a>
-						<a ng-click="openAnswer(feedback.id)" class="reply">Reply</a>
-						<a ng-hide="feedback.feedback_childs == 0" ng-click="openAnswers(channel.id, feedback.id, $index)"> Load Answers for Feedback </a>
-						<div class="ui segment" ng-hide="feedback.openAnswers != 'false'">
-							<div class="ui container comments" >
-								<div class="comment" ng-repeat="feedback_child in feedback.children">
-									<a class="avatar">
-										<img src="http://semantic-ui.com/images/wireframe/square-image.png">
-									</a>
-									<div class="content">
-										<a class="author">{{feedback_child.author}}</a>
-										<div class="metadata">
-											<div class="rating">
-												<i class="star icon"></i>
-												{{feedback_child.happiness}}
+					<div class="comment" ng-repeat="feedback in feedbacks">
+								<a class="avatar">
+											<img src="http://semantic-ui.com/images/wireframe/square-image.png">
+								</a>
+								<div class="content">
+											<a class="author">{{feedback.author}}</a>
+											<div class="metadata">
+														<div class="date">{{channel.updated_at | date:"shortTime" }}</div>
+														<div class="rating">
+																	<i class="star icon"></i>
+																	{{feedback.happiness}}
+														</div>
 											</div>
-										</div>
-										<div class="text">
-											<p style="white-space: pre;">{{feedback_child.content}}</p>
-										</div>
-										<div class="actions">
-											<a class="reply" ng-click="upvoteFeedback(channel.id, feedback_child.id, $index)">Like</a>
-											<a class="save">Save</a>
-											<a ng-click="openAnswer(feedback.id)" class="reply">Reply</a>
-										</div>
-									</div>
+											<div class="text">
+														<p style="white-space: pre;">{{feedback.content}}</p>
+											</div>
+											<div class="actions">
+														<a class="reply" ng-click="upvoteFeedback(channel.id, feedback.id, $index)">Like</a>
+														<a class="save">Save</a>
+														<a ng-click="openAnswer(feedback.id)" class="reply">Reply</a>
+														<a ng-hide="feedback.feedback_childs == 0" ng-click="openAnswers(channel.id, feedback.id, $index)"> Load Answers for Feedback </a>
+														<div class="ui segment" ng-hide="feedback.openAnswers != 'false'">
+																	<div class="ui container comments" >
+																				<div class="comment" ng-repeat="feedback_child in feedback.children">
+																							<a class="avatar">
+																										<img src="http://semantic-ui.com/images/wireframe/square-image.png">
+																							</a>
+																							<div class="content">
+																										<a class="author">{{feedback_child.author}}</a>
+																										<div class="metadata">
+																													<div class="rating">
+																																<i class="star icon"></i>
+																																{{feedback_child.happiness}}
+																													</div>
+																										</div>
+																										<div class="text">
+																													<p style="white-space: pre;">{{feedback_child.content}}</p>
+																										</div>
+																										<div class="actions">
+																													<a class="reply" ng-click="upvoteFeedback(channel.id, feedback_child.id, $index)">Like</a>
+																													<a class="save">Save</a>
+																													<a ng-click="openAnswer(feedback.id)" class="reply">Reply</a>
+																										</div>
+																							</div>
+																				</div>
+																				<li class="animate-repeat" ng-if="results.length == 0">
+																							<strong>No results found...</strong>
+																				</li>
+																	</div>
+														</div>
+											</div>
 								</div>
 								<li class="animate-repeat" ng-if="results.length == 0">
-									<strong>No results found...</strong>
+											<strong>No results found...</strong>
 								</li>
-							</div>
-						</div>
 					</div>
-				</div>
-				<li class="animate-repeat" ng-if="results.length == 0">
-					<strong>No results found...</strong>
-				</li>
+		</div>
+</div-->
+<br>
+<div class="ui two cards" >
+	<div class="ui fluid card" ng-repeat="feedback in feedbacks">
+		<div class="content">
+			<div class="header">{{feedback.title}}</div>
+			<div class="meta">
+				<span class="right floated time">{{feedback.created_at | date:"shortTime" }}</span>
+				<span class="category">Score: {{feedback.happiness}} </span>
+			</div>
+			<div class="description">
+				<p>{{feedback.content}}</p>
 			</div>
 		</div>
+		<div class="extra content">
+			<!--div class="left floated">
+			<i class="heart outline icon"></i>
+		</div-->
+		<div class="left floated">
+			<i class="thumbs up icon" ng-click="upvoteFeedback(channel.id, feedback.id, $index)"></i>
+		</div>
+		<div class="left floated">
+			<i class="thumbs down icon" ng-click="downvoteFeedback(channel.id, feedback.id, $index)"></i>
+		</div>
+		<div class="right floated">
+			<i ng-click="openAnswer(feedback.id)" class="reply all icon">{{feedback.feedback_childs}}</i>
+		</div>
+		<!--div class="right floated">
+			<i href="http://bmalum.com" class="save icon"></i>
+	</div-->
+</div>
+</div>
+</div>
+<!-- Feedback Modal -->
+<div id="FeedbackModal" class="ui modal">
+<div class="header">Feedback für {{channel.name}}</div>
+<div class="content">
+<form class="ui form">
+	<div class="field">
+		<label>Feedback Titel</label>
+		<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
+	</div>
+	<div class="field">
+		<label>Dein Name</label>
+		<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
+	</div>
+	<div class="field">
+		<label>Deine e-Mail</label>
+		<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
+	</div>
+	<div class="field">
+		<label>Dein Feedback</label>
+		<textarea ng-model="feedback.content"></textarea>
+	</div>
+	<div class="ui right floated buttons">
+		<button class="ui button" ng-click="closeFeedbackModal()">Cancel</button>
+		<div class="or"></div>
+		<button class="ui positive button" ng-click="createFeedback()">Save</button>
 	</div>
 	<br>
-	<!-- Feedback Modal -->
-	<div id="FeedbackModal" class="ui modal">
-		<div class="header">Feedback für {{channel.name}}</div>
-		<div class="content">
-			<form class="ui form">
-				<div class="field">
-					<label>Feedback Titel</label>
-					<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
-				</div>
-				<div class="field">
-					<label>Dein Name</label>
-					<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
-				</div>
-				<div class="field">
-					<label>Deine e-Mail</label>
-					<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
-				</div>
-				<div class="field">
-					<label>Dein Feedback</label>
-					<textarea ng-model="feedback.content"></textarea>
-				</div>
-				<div class="ui right floated buttons">
-					<button class="ui button" ng-click="closeFeedbackModal()">Cancel</button>
-					<div class="or"></div>
-					<button class="ui positive button" ng-click="createFeedback()">Save</button>
-				</div>
-				<br>
-			</form>
-		</div>
+</form>
+</div>
+</div>
+<div id="inacAnswerModal" class="ui modal">
+<div class="header">
+Antwort auf Feedback
+</div>
+<div class="content">
+<form class="ui form">
+	<div class="field">
+		<label>Titel</label>
+		<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
 	</div>
-	<div id="AnswerModal" class="ui modal">
-		<div class="header">Antwort auf Feedback</div>
-		<div class="content">
-			<form class="ui form">
-				<div class="field">
-					<label>Titel</label>
-					<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
-				</div>
-				<div class="field">
-					<label>Dein Name</label>
-					<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
-				</div>
-				<div class="field">
-					<label>Deine e-Mail</label>
-					<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
-				</div>
-				<div class="field">
-					<label>Deine Antwort</label>
-					<textarea ng-model="feedback.content"></textarea>
-				</div>
-				<div class="ui right floated buttons">
-					<button class="ui button" ng-click="closeAnswerModal()">Cancel</button>
-					<div class="or"></div>
-					<button class="ui positive button" ng-click="sendAnswer()">Save</button>
-				</div>
-				<br>
-			</form>
-		</div>
+	<div class="field">
+		<label>Dein Name</label>
+		<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
 	</div>
+	<div class="field">
+		<label>Deine e-Mail</label>
+		<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
+	</div>
+	<div class="field">
+		<label>Deine Antwort</label>
+		<textarea ng-model="feedback.content"></textarea>
+	</div>
+	<div class="ui right floated buttons">
+		<button class="ui button" ng-click="closeAnswerModal()">Cancel</button>
+		<div class="or"></div>
+		<button class="ui positive button" ng-click="sendAnswer()">Save</button>
+	</div>
+	<br>
+</form>
+</div>
+</div>
+<div id="AnswerModal" class="ui modal">
+<div class="header">Feedback Messages</div>
+<div class="content">
+<div class="ui segment container">
+	<div class="ui header"> {{tmp_feedback.title}}</div>
+	{{tmp_feedback.content}}
+</div>
+
+<div class="ui feed">
+  <div class="event" ng-repeat="feedback in feedbackchildren">
+    <div class="label">
+      <img src="">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a class="user">
+          {{feedback.author}}
+        </a> wrote this Feedback:<br> {{feedback.title}}
+        <div class="date">
+          1 Hour Ago
+        </div>      
+      </div>
+      <div class="extra text">
+
+                <p>{{feedback.content}}</p></div>
+      <div class="meta">
+        	<div class="left floated">
+			<i class="thumbs up icon" ng-click="upvoteFeedback(channel.id, feedback.id, $index)"></i>
+		</div>
+		<div class="left floated">
+			<i class="thumbs down icon" ng-click="downvoteFeedback(channel.id, feedback.id, $index)"></i>
+		</div>
+		{{feedback.happiness}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ui form">
+  <div class="fields">
+    <div class="six wide field">
+      <label>Name</label>
+      <input type="text" ng-model="feedback.author" placeholder="Anonymous">
+    </div>
+    <div class="six wide field">
+      <label>e-Mail</label>
+      <input type="text" ng-model="feedback_.email" placeholder="hans.sepp@oetzi.com">
+    </div>
+</div>
+<div class="fields">
+    <div class="six wide field">
+      <label>FeedBack Title</label>
+      <input type="text" ng-model="feedback.title" placeholder="Feedback Title">
+    </div>
+     <div class="six wide field">
+    <label>Text</label>
+    <textarea ng-model="feedback.content"></textarea>
+  </div><div class="field">
+  <div class="ui orange button" ng-click="sendAnswer()">
+  	Send Answer
+  </div>
+</div>
+  </div>
+</div>
+</div>
+</div>

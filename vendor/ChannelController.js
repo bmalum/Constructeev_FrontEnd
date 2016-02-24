@@ -2,7 +2,13 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	 function($scope, $state, channelFactory){
 	
 	console.log($state.params);
-
+	try{
+	angular.element(AnswerModal).modal({
+    detachable: false
+  })}
+	catch(error){
+		console.log('Bahm')
+	}
 	if ($state.current.name == "channeldetail"){
 		getChannel($state.params.channel_name);
 		getFeedbacks($state.params.channel_name);
@@ -21,11 +27,11 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		}
 	}
 
-	$scope.openAnswers = function (channel_id, feedback_id, index){
+	/**$scope.openAnswers = function (channel_id, feedback_id){
 		console.log(index)
 		$scope.feedbacks[index].openAnswers = "false"
-		getFeedbackChilds(channel_id, feedback_id, index);
-	}
+		getFeedbackChilds(channel_id, feedback_id);
+	}*/
 
 	$scope.openFeedbackModal = function(){
 		angular.element(FeedbackModal).modal("show");
@@ -50,6 +56,13 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		//TODO - disable Feedback Like Button
 		//angular.element(channel_likebutton).addClass("disabled")
 	}
+	$scope.downvoteFeedback = function(channel_id, feedback_id, index){
+		channelFactory.downvoteFeedback(channel_id, feedback_id);
+		$scope.feedbacks[index].happiness--
+		localStorage.setItem('feedback'+feedback_id, true);
+		//TODO - disable Feedback Like Button
+		//angular.element(channel_likebutton).addClass("disabled")
+	}
 	$scope.upvoteChannel = function(channel_id){
 		channelFactory.upvoteChannel(channel_id);
 		$scope.channel.likes++
@@ -57,8 +70,23 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		angular.element(channel_likebutton).addClass("disabled")
 	}
 	$scope.openAnswer = function(feedback_id){
-		angular.element(AnswerModal).modal("show")
+		//angular.element(AnswerModal).remove()
+		angular.element(AnswerModal).modal('setting', { detachable:false, allowMultiple:false }).modal('show')
+		angular.element(AnswerModal).modal("refresh")
+		setTimeout(function () {
+      angular.element(AnswerModal).modal("refresh");
+    }, 100);
 		$scope.tmp_feedback_id = feedback_id
+		channelFactory.getFeedback(feedback_id, $scope.channel.id).success(function (feedback){
+			console.log(feedback.data)
+				$scope.tmp_feedback = feedback.data;
+				console.log($scope.tmp_feedback)
+			})
+			.error(function (feedback){
+				console.log(Error);
+			})
+		getFeedbackChilds($scope.channel.id, feedback_id);
+
 	}
 	$scope.sendAnswer = function(){
 		console.log($scope.channel.id);
@@ -109,7 +137,8 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
         console.log(requestData);
 		channelFactory.createFeedback(requestData, channel_id)
 		.success(function (feedback){
-				angular.element(AnswerModal).modal("hide");
+			//	angular.element(AnswerModal).modal("hide");
+				getFeedbackChilds(channel_id, parent_feedback_id)
 				$scope.feedback.feedback_childs ++
 			})
 			.error(function (feedback){
@@ -146,7 +175,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 				console.log("Error");
 			})
 		}
-
+/**
 	function getFeedbackChilds(channel_id, feedback_id, index){
 	 channelFactory.getChildren(channel_id, feedback_id)
 			.success(function (feedback_childs) {
@@ -156,8 +185,18 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 				console.log("Error");
 			})
 		}
-	}
+	}*/
 
+function getFeedbackChilds(channel_id, feedback_id){
+	 channelFactory.getChildren(channel_id, feedback_id)
+			.success(function (feedback_childs) {
+				$scope.feedbackchildren = feedback_childs.data;
+				console.log($scope.feedbackchildren);
+			}).error(function (error) {
+				console.log("Error");
+			})
+		}
+	}
 
 ]);
 

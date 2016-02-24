@@ -27,6 +27,10 @@ constructeev.factory('channelFactory', ['$http', function($http) {
         return $http.get(urlBase + '/' + id + '/feedbacks');
     };
 
+    channelFactory.getFeedback = function (feedback_id, channel_id) {
+        return $http.get(urlBase + '/' + channel_id + '/feedbacks/'+ feedback_id);
+    };
+
     channelFactory.createFeedback = function (feedback, channel_id) {
         return $http.post(urlBase + '/' + channel_id + '/feedbacks', feedback);
     };
@@ -34,6 +38,11 @@ constructeev.factory('channelFactory', ['$http', function($http) {
     channelFactory.upvoteFeedback = function (channel_id, feedback_id){
         return $http.get("/api/channels" + '/' + channel_id + '/feedbacks/' + feedback_id+"/_like");
     }
+    
+    channelFactory.downvoteFeedback = function (channel_id, feedback_id){
+        return $http.get("/api/channels" + '/' + channel_id + '/feedbacks/' + feedback_id+"/_dislike");
+    }
+
 
     channelFactory.upvoteChannel= function (channel_id){
         return $http.get("/api/channels" + '/' + channel_id + '/_like/');
