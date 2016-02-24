@@ -1,68 +1,63 @@
 <div ng-controller="HomeController">
-				<div class="ui inverted vertical masthead center aligned segment">
-								<div ui-view>
-												<div class="ui container">
-																<div class="ui inverted header">
-																				<div class="ui hidden divider"></div>
-																				<div class="ui olive label">
-																								Version
-																								<div class="detail">0.0.1</div>
-																				</div>
-																				<h1>Constructeev</h1>
-																				<h2> Open Source Feedback Communication Platform</h2>
-																</div><br>
-																<button ng-click="openLearnMoreModal()" class="ui yellow inverted button">Learn more</button>
-																<button ng-click="openChannelFormModal()" class="ui olive  inverted button">Create a Channel</button>
-												</div>
-				</div>	</div>
-
-				<div class="ui hidden divider"> </div>
-				<div class="ui container bm center">
-								<i class="code icon"></i>
-								Coded with <i class="heart icon"></i>	by <a href="https://bmalum.com"> bMalum</a>
-								<img class="ui small centered image" src="http://cdn.bmalum.net/phoenix-framework/media/badges/poweredby-phoenix-badge1-02.png">
-				</div>
-
-
-				<div class="ui modal" id="ChannelFormModal" ng-controller="ChannelController">
-								<div class="ui centered header">Create your Channel</div>
-								<div class="content">
-												<form class="ui form">
-																<div class="field">
-																				<label>Channel Name</label>
-																				<input type="text" ng-model="ChannelModel.name" placeholder="Channel Name">
-																</div>
-																<div class="field">
-																				<label>Channel URL</label>
-																				<input type="text" ng-model="ChannelModel.slug" placeholder="Channel Name">
-																</div>
-																<div class="field">
-																				<label>Your Name</label>
-																				<input type="text" ng-model="ChannelMaodel.author" placeholder="John Doe">
-																</div>
-																<div class="field">
-																				<label>Your eMail</label>
-																				<input type="text" ng-model="ChannelModel.email"  placeholder="jonny69@example.com">
-																</div>
-																<div class="field">
-																			    <label>Channel Describtion</label>
-																				    <textarea rows="2" ng-model="ChannelModel.description" placeholder="A short sentence why this Channel exists"></textarea>
-																					  </div>	
-																	<div class="ui right floated buttons">
-																					  <button ng-click="hideChannelFormModal()" class="ui button">Cancel</button>
-																						  <div class="or"></div>
-																							  <button class="ui positive button" ng-click="createChannel()">Create</button>																		
-																				</div><br>
-
-																		</form>
-								</div>
-				</div>
-
-				<div class="ui modal" id="LearnMoreModal">
-								<div class="ui centered header">More about Constructeev</div>
-								<div class="content">
-												<p>Coming Soon</p>
-												<p></p>
-												<p></p>
-								</div>
-				</div>
+	<div class="ui inverted vertical masthead center aligned segment">
+		<div ui-view>
+			<div class="ui container">
+				<div class="ui inverted header">
+					<div class="ui hidden divider"></div>
+					<div class="ui olive label">
+						Version
+						<div class="detail">0.0.1</div>
+					</div>
+					<h1>Constructeev</h1>
+					<h2> Open Source Feedback Communication Platform</h2>
+				</div><br>
+				<button ng-click="openLearnMoreModal()" class="ui yellow inverted button">Learn more</button>
+				<button ng-click="openChannelFormModal()" class="ui olive  inverted button">Create a Channel</button>
+			</div>
+		</div>	</div>
+		<div class="ui hidden divider"> </div>
+		<div class="ui container bm center">
+			<i class="code icon"></i>
+			Coded with <i class="heart icon"></i>	by <a href="https://bmalum.com"> bMalum</a>
+			<img class="ui small centered image" src="http://cdn.bmalum.net/phoenix-framework/media/badges/poweredby-phoenix-badge1-02.png">
+		</div>
+		<div class="ui modal" id="ChannelFormModal" ng-controller="ChannelController">
+			<div class="ui centered header">Create your Channel</div>
+			<div class="content">
+				<form class="ui form">
+					<div class="field">
+						<label>Channel Name</label>
+						<input type="text" ng-model="ChannelModel.name" placeholder="Channel Name">
+					</div>
+					<div class="field">
+						<label>Channel URL</label>
+						<input type="text" ng-model="ChannelModel.slug" placeholder="Channel Name">
+					</div>
+					<div class="field">
+						<label>Your Name</label>
+						<input type="text" ng-model="ChannelMaodel.author" placeholder="John Doe">
+					</div>
+					<div class="field">
+						<label>Your eMail</label>
+						<input type="text" ng-model="ChannelModel.email"  placeholder="jonny69@example.com">
+					</div>
+					<div class="field">
+						<label>Channel Describtion</label>
+						<textarea rows="2" ng-model="ChannelModel.description" placeholder="A short sentence why this Channel exists"></textarea>
+					</div>
+					<div class="ui right floated buttons">
+						<button ng-click="hideChannelFormModal()" class="ui button">Cancel</button>
+						<div class="or"></div>
+						<button class="ui positive button" ng-click="createChannel()">Create</button>
+					</div><br>
+				</form>
+			</div>
+		</div>
+		<div class="ui modal" id="LearnMoreModal">
+			<div class="ui centered header">More about Constructeev</div>
+			<div class="content">
+				<p>Coming Soon</p>
+				<p></p>
+				<p></p>
+			</div>
+		</div>
