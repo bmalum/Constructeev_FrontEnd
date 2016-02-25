@@ -1,6 +1,6 @@
 constructeev.factory('adminFactory', ['$http', function($http) {
 
-    var urlBase = '/api/admin';
+    var urlBase = '/api/admin/feedback_properties';
     var adminFactory = {};
 
     adminFactory.login = function (data) {
@@ -14,6 +14,19 @@ constructeev.factory('adminFactory', ['$http', function($http) {
     adminFactory.getFeedbacks = function (id) {
         return $http.get('/api/admin/feedback_properties?id=' + id);
     };
+
+    adminFactory.updateFeedbackProperty = function (cust, id) {
+        return $http.put(urlBase + '/' + id, cust)
+    };
+
+    adminFactory.fav = function (cust, id) {
+        return $http.put(urlBase + '/' + id, cust)
+    };
+
+
+    adminFactory.getChildren= function (channel_id, feedback_id){
+        return $http.get("/api/channels" + '/' + channel_id + '/feedbacks/' + feedback_id + '/_children');
+    }
 /**
     channelFactory.getChannel = function (id) {
         return $http.get(urlBase + '/' + id);

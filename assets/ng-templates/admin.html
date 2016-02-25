@@ -3,26 +3,31 @@
 
 
 <div class="ui two cards">
-<div class="ui card" ng-repeat="feedback in feedbacks">
+<div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread'">
   <div class="content">
-    <i class="right floated star icon"></i>
+    <i class="right floated star icon" ng-click="fav(feedback)"></i>
     <i class="right floated doctor icon"></i>
     <div class="header">{{feedback.title}}</div>
     <div class="description">
       <p>{{feedback.content}}</p>
     </div>
+      <a class="ui yellow right ribbon label" ng-hide="feedback.favorite">Fav</a>
   </div>
   <div class="extra content">
-    <span class="left floated like">
+    <span class="left floated like" ng-click="openAnswer(feedback.id, feedback.channel_id)">
       <i class="comment icon"></i>
       See Comments
     </span>
-    <span class="right floated star">
+    <span class="right floated star" ng-click="fav(feedback)">
       <i class="star icon"></i>
-      Favorite
+      Favorite  
     </span>
   </div>
-   <div class="ui bottom attached button">
+   <div class="ui green bottom attached button" ng-click="markAsRead(feedback)" ng-hide="feedback.unread">
+      <i class="remove icon"></i>
+      Mark as unread
+    </div>
+    <div class="ui red bottom attached button" ng-click="markAsRead(feedback)" ng-hide="!feedback.unread">
       <i class="checkmark icon"></i>
       Mark as Read
     </div>
@@ -38,5 +43,37 @@
 			</div>
 </div>
 
+<div id="AnswerModal" class="ui modal">
+<div class="ui feed">
+  <div class="header">Test</div>
+<div class="content">
+  <div class="event" ng-repeat="feedback in feedbackchildren">
+    <div class="label">
+      <img src="">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a class="user">
+          {{feedback.author}}
+        </a> wrote this Feedback:<br> {{feedback.title}}
+        <div class="date">
+          1 Hour Ago
+        </div>      
+      </div>
+      <div class="extra text">
 
+                <p>{{feedback.content}}</p></div>
+      <div class="meta">
+          <div class="left floated">
+      <i class="thumbs up icon" ng-click="upvoteFeedback(channel.id, feedback.id, $index)"></i>
+    </div>
+    <div class="left floated">
+      <i class="thumbs down icon" ng-click="downvoteFeedback(channel.id, feedback.id, $index)"></i>
+    </div>
+    {{feedback.happiness}}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </div>
