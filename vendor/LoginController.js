@@ -11,6 +11,7 @@ constructeev.controller('LoginController', ['$scope', '$state', 'loginFactory',
 			console.log(session.id)
 			if (session.valid) {
 				$state.go('admin', {channel_id: session.id});
+				console.log('Authroized for Channel: ' + session.name);
 			    angular.element(loginModal).modal("hide")
 			} else {
 				$state.go('home', {channel_id: session.id});

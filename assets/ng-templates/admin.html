@@ -1,6 +1,7 @@
 <div class="ui container nav_padding">
-<h1 class="ui center aligned header"> Admin View for {{channel.name}}</h1>
+<h1 ng-hide="!auth" class="ui center aligned header"> Admin View for {{channel.name}}</h1>
 
+<h1 ng-hide="auth" class="ui center aligned red message"> You are not Authorized to work on the Admin Page of {{channel.name}}</h1>
 
 <div class="ui two cards">
 <div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread'">

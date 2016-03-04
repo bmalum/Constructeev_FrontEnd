@@ -12,10 +12,10 @@ constructeev.factory('adminFactory', ['$http', function($http) {
     };
     
     adminFactory.getFeedbacks = function (id) {
-        return $http.get('/api/admin/feedback_properties?id=' + id);
+        return $http.get('/api/admin/feedback_properties?channel_id=' + id);
     };
 
-    adminFactory.updateFeedbackProperty = function (cust, id) {
+    adminFactory.updateFeedbackProperty = function (cust, id, channel_id) {
         return $http.put(urlBase + '/' + id, cust)
     };
 
