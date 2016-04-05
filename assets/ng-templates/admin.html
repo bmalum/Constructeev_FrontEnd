@@ -12,7 +12,7 @@
     <div class="description">
       <p>{{feedback.content}}</p>
     </div>
-      <a class="ui yellow right ribbon label" ng-hide="feedback.favorite">Fav</a>
+      <a class="ui yellow right ribbon label" ng-hide="!feedback.favorite">Fav</a>
   </div>
   <div class="extra content">
     <span class="left floated like" ng-click="openAnswer(feedback.id, feedback.channel_id)">
