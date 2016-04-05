@@ -122,14 +122,17 @@
 			<!--div class="left floated">
 			<i class="heart outline icon"></i>
 		</div-->
-		<div class="left floated">
+		<div class="left floated" ng-hide="isVotedUp(feedback.id)">
 			<i class="thumbs up icon" ng-click="upvoteFeedback(channel.id, feedback.id, $index)"></i>
 		</div>
-		<div class="left floated">
+		<div class="left floated" ng-hide="isVotedDown(feedback.id)">
 			<i class="thumbs down icon" ng-click="downvoteFeedback(channel.id, feedback.id, $index)"></i>
 		</div>
+    <div class="left floated" ng-click="openAnswer(feedback.id)">
+Reply on this Feedback
+    </div>
 		<div class="right floated">
-			<i ng-click="openAnswer(feedback.id)" class="reply all icon">{{feedback.feedback_childs}}</i>
+			  <i ng-click="openAnswer(feedback.id)" class="reply all icon">{{feedback.feedback_childs}}</i> Replies
 		</div>
 		<!--div class="right floated">
 			<i href="http://bmalum.com" class="save icon"></i>
