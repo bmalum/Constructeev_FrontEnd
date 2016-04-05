@@ -1,6 +1,6 @@
 constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactory',
 	 function($scope, $state, channelFactory){
-	
+
 	console.log($state.params);
 	try{
 	angular.element(AnswerModal).modal({
@@ -42,24 +42,52 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.createFeedback = function(){
 		console.log($scope.channel.id);
 		test = createFeedback($scope.feedback,$scope.channel.id);
-		
+
 	}
 	$scope.createChannel = function(){
 		console.log($scope.channelModel);
 		createChannel($scope.ChannelModel)
 		angular.element(ChannelFormModal).modal("hide");
 	}
+       $scope.isVotedUp = function(feedback_id){
+           value = localStorage.getItem("feedback"+feedback_id)
+           console.log("feedback para: "+feedback_id+" value: "+value)
+           if(value == 'up'){
+               return true
+           } else if(value=='down') {
+               return false
+           }
+           else{
+               return false
+           }
+       }
+
+			 $scope.isVotedDown = function(feedback_id){
+           value = localStorage.getItem("feedback"+feedback_id)
+           console.log("feedback para: "+feedback_id+" value: "+value)
+           if(value == 'up'){
+               return false
+           } else if(value=='down') {
+               return true
+           }
+           else{
+               return false
+           }
+       }
+
+
+
 	$scope.upvoteFeedback = function(channel_id, feedback_id, index){
 		channelFactory.upvoteFeedback(channel_id, feedback_id);
 		$scope.feedbacks[index].happiness++
-		localStorage.setItem('feedback'+feedback_id, true);
+		localStorage.setItem('feedback'+feedback_id, "up");
 		//TODO - disable Feedback Like Button
 		//angular.element(channel_likebutton).addClass("disabled")
 	}
 	$scope.downvoteFeedback = function(channel_id, feedback_id, index){
 		channelFactory.downvoteFeedback(channel_id, feedback_id);
 		$scope.feedbacks[index].happiness--
-		localStorage.setItem('feedback'+feedback_id, true);
+		localStorage.setItem('feedback'+feedback_id, "down");
 		//TODO - disable Feedback Like Button
 		//angular.element(channel_likebutton).addClass("disabled")
 	}
@@ -145,7 +173,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 				console.log(Error);
 			})
 	}
-	
+
 	function getChannelList(){
 	 channelFactory.getChannels()
 			.success(function (channel) {
@@ -155,7 +183,7 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 				console.log("Error");
 			})
 	}
-	
+
 	function getChannel(id){
 	 channelFactory.getChannel(id)
 			.success(function (channel) {
@@ -199,4 +227,3 @@ function getFeedbackChilds(channel_id, feedback_id){
 	}
 
 ]);
-
