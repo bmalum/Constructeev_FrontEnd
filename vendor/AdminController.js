@@ -1,5 +1,12 @@
 constructeev.controller('AdminController', ['$scope', '$state', 'adminFactory',
-	function($scope, $state, adminFactory){
+	                                          function($scope, $state, adminFactory){
+
+                                                $('.ui.accordion')
+                                                    .accordion()
+                                                ;
+                                                $('.ui.checkbox')
+                                                    .checkbox()
+                                                ;
 
 	adminFactory.getChannel($state.params.channel_id)
 			.success(function (channel) {
