@@ -2,6 +2,16 @@ html, body{
 	background-color: white !important;
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
 .ui.secondary.menu{
 	background-color: white !important;
 	z-index: 1;
@@ -11,6 +21,12 @@ html, body{
 
 .nav_padding{
 	padding-top: 45px !important;
+}
+
+.p.card{
+    white-space: pre-wrap;
+    max-height: 80px !important;
+    overflow-y: scroll !important;
 }
 
 .margined_item{
@@ -136,7 +152,7 @@ form.link, form.button {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
