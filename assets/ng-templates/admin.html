@@ -2,7 +2,35 @@
 <h1 ng-hide="!auth" class="ui center aligned header"> Admin View for {{channel.name}}</h1>
 
 <h1 ng-hide="auth" class="ui center aligned red message"> You are not Authorized to work on the Admin Page of {{channel.name}}</h1>
-
+<div class="ui styled fluid accordion" ng-hide="!auth">
+    <div class="title">Channel Settings:</div>
+    <div class="content">
+    <div class="ui form">
+            <div class="inline field">
+                <div class="ui slider checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden">
+                    <label>Slider</label>
+                </div>
+                <label></label>
+            </div>
+    <div class="inline field">
+        <label>Channel opening at:</label>
+        <input type="datetime-local">
+    </div>
+    <div class="inline field">
+        <label>Channel closed after:</label>
+        <input type="datetime-local">
+    </div>
+    <button class="ui button">
+        Save!
+    </button>
+        <button class="ui button">
+            Edit Channel Name/Descripton
+        </button>
+    </div>
+    </div>
+</div>
+<br>
 <div class="ui two cards">
 <div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread'">
   <div class="content">
@@ -21,14 +49,14 @@
     </span>
     <span class="right floated star" ng-click="fav(feedback)">
       <i class="star icon"></i>
-      Favorite  
+      Favorite
     </span>
   </div>
-   <div class="ui green bottom attached button" ng-click="markAsRead(feedback)" ng-hide="feedback.unread">
+   <div class="ui green bottom attached button" ng-click="markAsRead(feedback)" ng-hide="!feedback.unread">
       <i class="remove icon"></i>
       Mark as unread
     </div>
-    <div class="ui red bottom attached button" ng-click="markAsRead(feedback)" ng-hide="!feedback.unread">
+    <div class="ui red bottom attached button" ng-click="markAsRead(feedback)" ng-hide="feedback.unread">
       <i class="checkmark icon"></i>
       Mark as Read
     </div>
@@ -40,7 +68,6 @@
       <p>Seems there is no Feedback here</p>
     </div>
   </div>
-		
 			</div>
 </div>
 
