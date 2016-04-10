@@ -23,7 +23,7 @@
 			<div class="bm center column">
 				<div class="ui labeled button" tabindex="0" ng-disabled="true">
 					<div class="ui blue button" ng-click="openFeedbackModal()">
-						<i class="comment icon"></i>Feedback
+						<i class="comment icon"></i>write Feedback
 					</div>
 					<a class="ui basic blue left pointing label">
 						{{channel.feedback_counter}}
@@ -35,7 +35,7 @@
 				<i class="facebook icon"></i>
 				</button>
 				<button class="ui circular twitter icon button">
-				<i class="twitter icon"></i>
+				    <i class="twitter icon" href="https://twitter.com/intent/tweet?text=Hello%20world"></i>
 				</button>
 				<button class="ui circular google plus icon button">
 				<i class="google plus icon"></i>
@@ -106,8 +106,8 @@
 		</div>
 </div-->
 <br>
-<div class="ui two cards" >
-	<div class="ui fluid card" ng-repeat="feedback in feedbacks">
+<div class="ui two stackable cards" >
+	<div class="ui fluid centered card" ng-repeat="feedback in feedbacks">
 		<div class="content">
 			<div class="header">{{feedback.title}}</div>
 			<div class="meta">
@@ -115,7 +115,7 @@
 				<span class="category">Score: {{feedback.happiness}} </span>
 			</div>
 			<div class="description">
-				<p>{{feedback.content}}</p>
+				  <p style="white-space:pre-wrap;" class="p card">{{feedback.content}}</p>
 			</div>
 		</div>
 		<div class="extra content">
