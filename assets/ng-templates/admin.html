@@ -7,19 +7,19 @@
     <div class="content">
     <div class="ui form">
             <div class="inline field">
-                <div class="ui slider checkbox">
+                <div class="ui toggle checkbox">
                     <input type="checkbox" tabindex="0" class="hidden">
-                    <label>Slider</label>
+                    <label>Channel Public</label>
                 </div>
                 <label></label>
             </div>
     <div class="inline field">
         <label>Channel opening at:</label>
-        <input type="datetime-local">
+        <input type="datetime-local" placeholder="coming soon!">
     </div>
     <div class="inline field">
         <label>Channel closed after:</label>
-        <input type="datetime-local">
+        <input type="datetime-local" placeholder="coming soon!">
     </div>
     <button class="ui button">
         Save!
@@ -31,8 +31,15 @@
     </div>
 </div>
 <br>
+<div class="three ui buttons">
+    <button ng-click="feedbackFilter = null" class="ui blue button">All</button>
+    <button ng-click="feedbackFilter = {favorite: true}" class="ui yellow button">Favorites</button>
+    <button ng-click="feedbackFilter = {unread: false}" class="ui red button">Unread</button>
+
+</div>
+<br><br>
 <div class="ui two cards">
-<div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread'">
+    <div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread' | filter: feedbackFilter">
   <div class="content">
     <i class="right floated star icon" ng-click="fav(feedback)"></i>
     <i class="right floated doctor icon"></i>
