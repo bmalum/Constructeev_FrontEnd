@@ -1,3 +1,39 @@
+<script>
+ $('#regform')
+        .form({
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Please enter a Channelname'
+                        }
+                    ]
+                },
+                author: {
+                    identifier: 'author',
+                    rules: [
+                        {
+                            type   : 'empty',
+                            prompt : 'Please enter your name'
+                        }
+                    ]
+                },
+                mail: {
+                    identifier: 'mail',
+                    rules: [
+                        {
+                            type   : 'regExp[/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/]',
+                            prompt : 'Please enter your correct e-mail'
+                        }
+                    ]
+                },
+            }
+        })
+     ;
+</script>
+
 <div ng-controller="HomeController">
 	<div class="ui inverted vertical masthead center aligned segment">
 		<div ui-view>
@@ -24,33 +60,36 @@
 		<div class="ui modal" id="ChannelFormModal" ng-controller="ChannelController">
 			<div class="ui centered header">Create your Channel</div>
 			<div class="content">
-				<form class="ui form">
+				  <form class="ui form" id="regform">
+              <div class="ui error message"></div>
+
 					<div class="field">
 						<label>Channel Name</label>
-						<input type="text" ng-model="ChannelModel.name" placeholder="Channel Name">
+						<input type="text" name="name" ng-model="ChannelModel.name" placeholder="Channel Name">
 					</div>
-					<div class="field">
+					<!--div class="field">
 						<label>Channel URL</label>
 						<input type="text" ng-model="ChannelModel.slug" placeholder="Channel Name">
-					</div>
+					</div-->
 					<div class="field">
 						<label>Your Name</label>
-						<input type="text" ng-model="ChannelMaodel.author" placeholder="John Doe">
+						<input type="text" name="author" ng-model="ChannelMaodel.author" placeholder="John Doe">
 					</div>
 					<div class="field">
 						<label>Your eMail</label>
-						<input type="text" ng-model="ChannelModel.email"  placeholder="jonny69@example.com">
+						<input type="text" name="mail" ng-model="ChannelModel.email"  placeholder="jonny69@example.com">
 					</div>
 					<div class="field">
 						<label>Channel Describtion</label>
-						<textarea rows="2" ng-model="ChannelModel.description" placeholder="A short sentence why this Channel exists"></textarea>
+						<textarea rows="2" name="desc" ng-model="ChannelModel.description" placeholder="A short sentence why this Channel exists"></textarea>
 					</div>
 					<div class="ui right floated buttons">
 						<button ng-click="hideChannelFormModal()" class="ui button">Cancel</button>
 						<div class="or"></div>
 						<button class="ui positive button" ng-click="createChannel()">Create</button>
-					</div><br>
-				</form>
+					</div>
+        </form>
+        <br>
 			</div>
 		</div>
 		<div class="ui modal" id="LearnMoreModal">
@@ -61,3 +100,5 @@
 				<p></p>
 			</div>
 		</div>
+
+

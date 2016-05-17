@@ -1,7 +1,7 @@
 <h1 class="ui center aligned header nav_padding"> Popular Constructeev Channels</h1>
 <div class="ui container example-animate-container">
 	<div class="ui fluid centered cards">
-		<div class="ui card animate-repeat" ng-repeat="channel in channels">
+		<div class="ui card animate-repeat" ng-repeat="channel in channels | orderBy: '-feedback_counter'">
 			<div class="content">
 				<div class="right floated meta">{{channel.updated_at | date:"shortTime" }}</div>
 				<img class="ui avatar image" ng-src="http://www.gravatar.com/avatar/{{channel.channel_hash}}?s=120&d=identicon&r=PG"> {{channel.name}}

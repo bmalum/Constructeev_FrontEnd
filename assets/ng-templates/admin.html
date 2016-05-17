@@ -39,7 +39,7 @@
 </div>
 <br><br>
 <div class="ui two cards">
-    <div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'-unread' | filter: feedbackFilter">
+    <div class="ui card" ng-repeat="feedback in feedbacks | orderBy:'unread' | filter: feedbackFilter">
   <div class="content">
     <i class="right floated star icon" ng-click="fav(feedback)"></i>
     <i class="right floated doctor icon"></i>

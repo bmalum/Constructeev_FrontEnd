@@ -1,7 +1,7 @@
 <div class="ui container nav_padding">
 	<div class="ui segments">
 		<div class="ui segment">
-			<a class="ui green ribbon label">Premium Channel</a>
+			<div class="ui green ribbon label">Premium Channel</div>
 			<h2 class="ui center aligned icon header">
 			<img class="ui small circular image" src="http://www.gravatar.com/avatar/{{channel.channel_hash}}?s=500&d=identicon&r=PG">
 			<div class="ui hidden divider"></div>
@@ -146,19 +146,24 @@ Reply on this Feedback
 <div class="content">
 <form class="ui form">
 	<div class="field">
-		<label>Feedback Titel</label>
+		<label>Feedback Title</label>
 		<input type="text" name="first-name" placeholder="Mein Feedback" ng-model="feedback.title">
 	</div>
-	<div class="field">
-		<label>Dein Name</label>
+  <div class="ui toggle checkbox">
+      <input type="checkbox" name="gift" tabindex="0" class="hidden">
+      <label>Post Anonymous</label>
+  </div>
+  <br><br>
+	<div class="field" ng-hide="anon">
+		<label>Your Name</label>
 		<input type="text" name="last-name" placeholder="Anonymouse" ng-model="feedback.author">
 	</div>
-	<div class="field">
-		<label>Deine e-Mail</label>
+	<div class="field" ng-hide="anon">
+		<label>Your e-Mail {{scope.anon}}</label>
 		<input type="text" name="last-name" placeholder="john.doe@example.com" ng-model="feedback_.email">
 	</div>
 	<div class="field">
-		<label>Dein Feedback</label>
+		<label>Your Feedback</label>
 		<textarea ng-model="feedback.content"></textarea>
 	</div>
 	<div class="ui right floated buttons">
@@ -226,18 +231,19 @@ Antwort auf Feedback
       <div class="extra text">
 
                 <p>{{feedback.content}}</p></div>
-      <div class="meta">
+      <!--div class="meta">
         	<div class="left floated">
 			<i class="thumbs up icon" ng-click="upvoteFeedback(channel.id, feedback.id, $index)"></i>
 		</div>
 		<div class="left floated">
 			<i class="thumbs down icon" ng-click="downvoteFeedback(channel.id, feedback.id, $index)"></i>
-		</div>
-		{{feedback.happiness}}
+		</div-->
+	<!--	{{feedback.happiness}}-->
       </div>
-    </div>
   </div>
 </div>
+</div>
+<div class="ui container">
 <div class="ui form">
   <div class="fields">
     <div class="six wide field">
@@ -248,7 +254,7 @@ Antwort auf Feedback
       <label>e-Mail</label>
       <input type="text" ng-model="feedback_.email" placeholder="hans.sepp@oetzi.com">
     </div>
-</div>
+  </div>
 <div class="fields">
     <div class="six wide field">
       <label>FeedBack Title</label>
@@ -257,11 +263,11 @@ Antwort auf Feedback
      <div class="six wide field">
     <label>Text</label>
     <textarea ng-model="feedback.content"></textarea>
-  </div><div class="field">
+     </div><div class="field"></div>
   <div class="ui orange button" ng-click="sendAnswer()">
   	Send Answer
   </div>
-</div>
+</div><br>
   </div>
 </div>
 </div>

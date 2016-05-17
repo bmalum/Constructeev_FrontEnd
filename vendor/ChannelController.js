@@ -1,5 +1,16 @@
 constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactory',
 	 function($scope, $state, channelFactory){
+       $scope.anon = false;
+
+       $('.ui.checkbox').checkbox('setting', 'onChange', function($scope){
+           anon = $('.ui.checkbox').checkbox('is checked')
+           updateCheckbox(anon)
+       });
+
+       function updateCheckbox(state){
+           $scope.anon = state;
+           $scope.$apply();
+       }
 
 	console.log($state.params);
 	try{
@@ -47,11 +58,10 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 	$scope.createChannel = function(){
 		console.log($scope.channelModel);
 		createChannel($scope.ChannelModel)
-		angular.element(ChannelFormModal).modal("hide");
+		//angular.element(ChannelFormModal).modal("hide");
 	}
        $scope.isVotedUp = function(feedback_id){
            value = localStorage.getItem("feedback"+feedback_id)
-           console.log("feedback para: "+feedback_id+" value: "+value)
            if(value == 'up'){
                return true
            } else if(value=='down') {
@@ -64,7 +74,6 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 
 			 $scope.isVotedDown = function(feedback_id){
            value = localStorage.getItem("feedback"+feedback_id)
-           console.log("feedback para: "+feedback_id+" value: "+value)
            if(value == 'up'){
                return false
            } else if(value=='down') {
@@ -131,11 +140,11 @@ constructeev.controller('ChannelController', ['$scope', '$state', 'channelFactor
 		channelFactory.createChannel(requestData)
 			.success(function (channel){
 				console.log(channel.data)
-			$state.go('channeldetail', { channel_name: channel.data.id});
+			    $state.go('channeldetail', { channel_name: channel.data.id});
+          angular.element(ChannelFormModal).modal("hide");
 			})
 			.error(function (channel){
 							console.log("Failed to Create Channel");
-							console.log(channel);
 			})
 	}
 
